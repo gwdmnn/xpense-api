@@ -1,6 +1,7 @@
 package com.xpense.xpensedemo.model;
 
 import com.xpense.xpensedemo.dto.IncomeDTO;
+import com.xpense.xpensedemo.model.transaction.Income;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

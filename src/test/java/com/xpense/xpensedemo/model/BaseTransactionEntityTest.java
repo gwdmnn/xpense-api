@@ -1,5 +1,6 @@
 package com.xpense.xpensedemo.model;
 
+import com.xpense.xpensedemo.model.transaction.BaseTransactionEntity;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;

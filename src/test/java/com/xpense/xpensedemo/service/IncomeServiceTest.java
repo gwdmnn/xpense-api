@@ -1,7 +1,7 @@
 package com.xpense.xpensedemo.service;
 
 import com.xpense.xpensedemo.dto.IncomeDTO;
-import com.xpense.xpensedemo.model.Income;
+import com.xpense.xpensedemo.model.transaction.Income;
 import com.xpense.xpensedemo.repository.IncomeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

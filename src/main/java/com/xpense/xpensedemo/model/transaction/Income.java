@@ -1,4 +1,4 @@
-package com.xpense.xpensedemo.model;
+package com.xpense.xpensedemo.model.transaction;
 
 import com.xpense.xpensedemo.dto.IncomeDTO;
 import jakarta.persistence.*;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "income")
+@Table(name = "INCOME")
 @NoArgsConstructor
 public class Income extends BaseTransactionEntity {
 

@@ -1,6 +1,8 @@
 package com.xpense.xpensedemo.model;
 
 import com.xpense.xpensedemo.dto.OutputDTO;
+import com.xpense.xpensedemo.model.category.Category;
+import com.xpense.xpensedemo.model.transaction.Output;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -26,6 +28,7 @@ class OutputTest {
         assertEquals(125.50, output.getAmount());
         assertEquals("Grocery shopping", output.getDescription());
         assertEquals(LocalDate.of(2025, 8, 12), output.getDate());
+        assertNull(output.getCategory()); // Category is not set in fromDTO method
     }
 
     @Test
@@ -163,5 +166,83 @@ class OutputTest {
         assertEquals(45.67, output.getAmount());
         assertEquals("Special café & restaurant ñ", output.getDescription());
         assertEquals(LocalDate.of(2025, 8, 12), output.getDate());
+    }
+
+    @Test
+    void constructor_ShouldCreateOutputWithCategory() {
+        // Given
+        Category category = new Category(1L, "Food");
+        double amount = 125.50;
+        String description = "Grocery shopping";
+        LocalDate date = LocalDate.of(2025, 8, 12);
+
+        // When
+        Output output = new Output(amount, description, date, category);
+
+        // Then
+        assertEquals(amount, output.getAmount());
+        assertEquals(description, output.getDescription());
+        assertEquals(date, output.getDate());
+        assertEquals(category, output.getCategory());
+        assertEquals("Food", output.getCategory().getName());
+    }
+
+    @Test
+    void constructor_ShouldCreateOutputWithoutCategory() {
+        // Given
+        double amount = 125.50;
+        String description = "Grocery shopping";
+        LocalDate date = LocalDate.of(2025, 8, 12);
+
+        // When
+        Output output = new Output(amount, description, date);
+
+        // Then
+        assertEquals(amount, output.getAmount());
+        assertEquals(description, output.getDescription());
+        assertEquals(date, output.getDate());
+        assertNull(output.getCategory());
+    }
+
+    @Test
+    void setCategory_ShouldAssignCategory() {
+        // Given
+        Output output = new Output(100.0, "Test expense", LocalDate.now());
+        Category category = new Category(1L, "Transportation");
+
+        // When
+        output.setCategory(category);
+
+        // Then
+        assertEquals(category, output.getCategory());
+        assertEquals("Transportation", output.getCategory().getName());
+    }
+
+    @Test
+    void setCategory_ShouldHandleNullCategory() {
+        // Given
+        Category initialCategory = new Category(1L, "Food");
+        Output output = new Output(100.0, "Test expense", LocalDate.now(), initialCategory);
+
+        // When
+        output.setCategory(null);
+
+        // Then
+        assertNull(output.getCategory());
+    }
+
+    @Test
+    void getCategory_ShouldReturnAssignedCategory() {
+        // Given
+        Category category = new Category(2L, "Entertainment");
+        Output output = new Output(50.0, "Movie tickets", LocalDate.now(), category);
+
+        // When
+        Category retrievedCategory = output.getCategory();
+
+        // Then
+        assertNotNull(retrievedCategory);
+        assertEquals(category.getId(), retrievedCategory.getId());
+        assertEquals(category.getName(), retrievedCategory.getName());
     }
 }

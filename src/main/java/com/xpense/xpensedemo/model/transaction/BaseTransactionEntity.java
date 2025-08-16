@@ -1,4 +1,4 @@
-package com.xpense.xpensedemo.model;
+package com.xpense.xpensedemo.model.transaction;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -16,9 +17,10 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @NoArgsConstructor
 @Getter
+@Setter
 public abstract class BaseTransactionEntity {
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
     

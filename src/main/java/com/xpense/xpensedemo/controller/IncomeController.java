@@ -3,16 +3,17 @@ package com.xpense.xpensedemo.controller;
 import com.xpense.xpensedemo.dto.IncomeDTO;
 import com.xpense.xpensedemo.service.IncomeService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/incomes")
+@AllArgsConstructor
 public class IncomeController {
 
-    @Autowired
-    IncomeService incomeService;
+
+    private final IncomeService incomeService;
 
     @PostMapping("/create")
     public ResponseEntity<String> createIncome(@Valid @RequestBody IncomeDTO income) {
